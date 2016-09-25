@@ -1,13 +1,12 @@
 {
   "name": "gb-date-formatter",
-  "version": "0.0.0",
-  "description": "gb-date-formatter",
+  "version": "1.0.0",
+  "description": "minimal date formatting",
   "license": "MIT",
-  "repository": "",
-  "author": "",
-  "keywords": [
-    ""
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaryB432/gb-date-formatter.git"
+  },
   "files": [
     "lib"
   ],
@@ -21,8 +20,7 @@
     "watch": "npm run build -- --watch",
     "watch:test": "npm run test -- --watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "3.4.30",
     "@types/mocha": "2.2.29",
@@ -36,5 +34,9 @@
   },
   "engines": {
     "node": ">=4.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/GaryB432/gb-date-formatter/issues"
+  },
+  "homepage": "https://github.com/GaryB432/gb-date-formatter#readme"
 }

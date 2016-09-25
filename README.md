@@ -6,20 +6,23 @@ Here is a quick example of how this module can be used in other modules. The [Ty
 
 Now assuming you have published this amazing module to _npm_ with the name `my-amazing-lib`, and installed it in the module in which you need it -
 
-- To use the `Greeter` class in a TypeScript file -
+- To use the `DateFormatter` class in a TypeScript file -
 
 ```ts
-import { Greeter } from "my-amazing-lib";
+import { DateFormatter } from "my-amazing-lib";
 
-const greeter = new Greeter("World!");
-greeter.greet();
+const formatter = new DateFormatter();
+console.log(formatter.format(new Date("1924-02-25T07:44:40.755Z"), "MMMM y"));
+// February 1924
+
 ```
 
-- To use the `Greeter` class in a JavaScript file -
+- To use the `DateFormatter` class in a JavaScript file -
 
 ```js
-const Greeter = require('my-amazing-lib').Greeter;
+var DateFormatter = require("my-amazing-lib").DateFormatter;
 
-const greeter = new Greeter('World!');
-greeter.greet();
+var formatter = new DateFormatter();
+console.log(formatter.format(new Date("1924-02-25T07:44:40.755Z"), "MMMM y"));
+// February 1924
 ```

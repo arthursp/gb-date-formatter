@@ -6,7 +6,9 @@
     "noImplicitAny": true,
     "outDir": "./lib",
     "preserveConstEnums": true,
-    "removeComments": true
+    "removeComments": true,
+    "noImplicitUseStrict": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*"
