@@ -1,2 +1,2 @@
-import { DateFormatter } from "./formatter";
-export { DateFormatter };
+import { DateFormatter, FormatString } from "./formatter";
+export { DateFormatter, FormatString };
