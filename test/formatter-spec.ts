@@ -11,9 +11,11 @@ type Setup = [Date, ExpectedResult];
 
 describe("Formatter", () => {
   let formatter: DateFormatter;
+  let offset: number;
   beforeEach(() => {
     const nd = new Date();
-    console.log(nd, nd.getTimezoneOffset());
+    // console.log(nd, nd.getTimezoneOffset());
+    offset = nd.getTimezoneOffset();
     formatter = new DateFormatter("en-US");
   });
 
@@ -22,7 +24,7 @@ describe("Formatter", () => {
       .to.throw('The fmt value \'WTF\' is not supported.');
   });
 
-  xdescribe("should format Long date", () => {
+  describe("should format Long date", () => {
     const setups: Setup[] = [
       [new Date("2024-01-05T00:00:00-05:00"), "January 2024"],
       [new Date("2024-02-05T00:00:00-05:00"), "February 2024"],
@@ -44,7 +46,7 @@ describe("Formatter", () => {
     })
   });
 
-  xdescribe("should format Medium date", () => {
+  describe("should format Medium date", () => {
     const setups: Setup[] = [
       [new Date("2024-01-05T20:00:00-06:00"), "Friday Jan 5, 2024 8:00 PM"],
       [new Date("2024-02-05T23:00:00-06:00"), "Monday Feb 5, 2024 11:00 PM"],
@@ -60,7 +62,8 @@ describe("Formatter", () => {
       [new Date("2024-12-05T20:00:00-06:00"), "Thursday Dec 5, 2024 8:00 PM"],]
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
-        expect(formatter.format(s[0], "EEE MMM d, y h:mm a")).to.equal(s[1]);
+        const adjustedTicks = s[0].getTime() + ((offset - 300) * 60000);
+        expect(formatter.format(new Date(adjustedTicks), "EEE MMM d, y h:mm a")).to.equal(s[1]);
       });
     })
   });
