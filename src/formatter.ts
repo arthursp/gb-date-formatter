@@ -58,7 +58,7 @@ export class DateFormatter {
     }
 
     private prependZero(num: number, cnt: number): string {
-        const z = "000";
+        const z = Array(5).join("0");
         return z.concat(num.toString(10)).slice(-cnt);
     }
 }

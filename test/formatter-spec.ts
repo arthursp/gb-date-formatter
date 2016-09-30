@@ -46,7 +46,7 @@ describe("Formatter", () => {
     })
   });
 
-  xdescribe("should format Medium date", () => {
+  describe("should format Medium date", () => {
     const setups: Setup[] = [
       [new Date("2024-01-05T20:00:00-06:00"), "Friday Jan 5, 2024 8:00 PM"],
       [new Date("2024-02-05T23:00:00-06:00"), "Monday Feb 5, 2024 11:00 PM"],
@@ -54,7 +54,7 @@ describe("Formatter", () => {
       [new Date("2024-04-05T20:00:00-05:00"), "Friday Apr 5, 2024 8:00 PM"],
       [new Date("2024-05-20T08:09:10-05:00"), "Monday May 20, 2024 8:09 AM"],
       [new Date("2024-06-05T20:00:00-05:00"), "Wednesday Jun 5, 2024 8:00 PM"],
-      [new Date("2024-07-05T20:00:00-05:00"), "Friday Jul 5, 2024 8:00 PM"],
+      [new Date("2024-07-05T00:02:00-05:00"), "Friday Jul 5, 2024 12:02 AM"],
       [new Date("2024-08-05T20:59:00-05:00"), "Monday Aug 5, 2024 8:59 PM"],
       [new Date("2024-09-05T20:00:00-05:00"), "Thursday Sep 5, 2024 8:00 PM"],
       [new Date("2024-10-05T20:00:00-05:00"), "Saturday Oct 5, 2024 8:00 PM"],

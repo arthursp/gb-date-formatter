@@ -16,11 +16,14 @@ export class DateParts {
         this.mm = date.getMinutes();
         this.a = "AM";
 
-        if (this.h > 11) {
-            this.a = "PM";
-            if (this.h > 12) {
-                this.h -= 12;
+        if (this.h === 0) {
+            this.h = 12;
+        } else
+            if (this.h > 11) {
+                this.a = "PM";
+                if (this.h > 12) {
+                    this.h -= 12;
+                }
             }
-        }
     }
 }
