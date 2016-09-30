@@ -32,6 +32,8 @@ const dayNames: LongShort[] = [
 ];
 
 export class DateFormatter {
+    static zeros: string = Array(5).join("0");
+
     constructor(private locale: string = "en-US") {
         if (locale !== "en-US") {
             throw new Error("Only en-US is supported.");
@@ -58,7 +60,6 @@ export class DateFormatter {
     }
 
     private prependZero(num: number, cnt: number): string {
-        const z = Array(5).join("0");
-        return z.concat(num.toString(10)).slice(-cnt);
+        return DateFormatter.zeros.concat(num.toString(10)).slice(-cnt);
     }
 }

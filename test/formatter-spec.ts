@@ -11,11 +11,8 @@ type Setup = [Date, ExpectedResult];
 
 describe("Formatter", () => {
   let formatter: DateFormatter;
-  let offset: number;
+
   beforeEach(() => {
-    const nd = new Date();
-    // console.log(nd, nd.getTimezoneOffset());
-    offset = nd.getTimezoneOffset();
     formatter = new DateFormatter("en-US");
   });
 
@@ -62,8 +59,7 @@ describe("Formatter", () => {
       [new Date("2024-12-05T20:00:00-06:00"), "Thursday Dec 5, 2024 8:00 PM"],]
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
-        const adjustedTicks = s[0].getTime() + ((offset - 300) * 60000);
-        expect(formatter.format(new Date(adjustedTicks), "EEE MMM d, y h:mm a")).to.equal(s[1]);
+        expect(formatter.format(s[0], "EEE MMM d, y h:mm a")).to.equal(s[1]);
       });
     })
   });
