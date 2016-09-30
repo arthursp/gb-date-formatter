@@ -2,7 +2,9 @@
 
 import { DateParts } from "./dateparts";
 
-export type FormatString = "EEE MMM d, y h:mm a" | "MMMM y";
+export type FormatString =
+    "EEE" | "MMM" | "MMMM" |
+    "EEE MMM d, y h:mm a" | "MMMM y";
 
 type LongShort = [string, string];
 
@@ -32,24 +34,39 @@ const dayNames: LongShort[] = [
 ];
 
 export class DateFormatter {
-    static zeros: string = Array(5).join("0");
+    private static zeros: string = Array(5).join("0");
 
     constructor(private locale: string = "en-US") {
         if (locale !== "en-US") {
             throw new Error("Only en-US is supported.");
         }
     }
-    public format(date: Date, fmt: FormatString | string | undefined | null): string {
-        const parts = new DateParts(date);
 
+    public format(date: Date, fmt: FormatString): string {
+        return this.doFormat(new DateParts(date), fmt);
+    }
+
+    private doFormat(parts: DateParts, fmt: FormatString): string {
         switch (fmt) {
+            case "EEE": {
+                return dayNames[parts.w][0];
+            }
+            case "MMM": {
+                return monthNames[parts.m][1];
+            }
+            case "MMMM": {
+                return monthNames[parts.m][0];
+            }
             case "MMMM y": {
-                return `${monthNames[parts.m][0]} ${parts.y.toFixed(0)}`;
+                return `${this.doFormat(parts, "MMMM")} ${parts.y.toFixed(0)}`;
             }
             case "EEE MMM d, y h:mm a": {
                 const ps = [
-                    `${dayNames[parts.w][0]} ${monthNames[parts.m][1]} ${parts.d}, ${parts.y}`,
-                    `${parts.h}:${this.prependZero(parts.mm, 2)} ${parts.a}`,
+                    `${this.doFormat(parts, "EEE")}`,
+                    `${this.doFormat(parts, "MMM")}`,
+                    `${parts.d}, ${parts.y}`,
+                    `${parts.h}:${this.prependZero(parts.mm, 2)}`,
+                    `${parts.a}`,
                 ];
                 return ps.join(" ");
             }
@@ -57,6 +74,7 @@ export class DateFormatter {
                 throw new Error(`The fmt value '${fmt}' is not supported.`);
             }
         }
+
     }
 
     private prependZero(num: number, cnt: number): string {

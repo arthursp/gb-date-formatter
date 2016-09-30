@@ -16,11 +16,6 @@ describe("Formatter", () => {
     formatter = new DateFormatter("en-US");
   });
 
-  it("should throw on bad fmt", () => {
-    expect(() => formatter.format(new Date(), "WTF"))
-      .to.throw('The fmt value \'WTF\' is not supported.');
-  });
-
   describe("should format Long date", () => {
     const setups: Setup[] = [
       [new Date("2024-01-05T00:00:00-05:00"), "January 2024"],
@@ -60,6 +55,49 @@ describe("Formatter", () => {
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
         expect(formatter.format(s[0], "EEE MMM d, y h:mm a")).to.equal(s[1]);
+      });
+    })
+  });
+
+  describe("should format month names long", () => {
+    const setups: Setup[] = [
+      [new Date("2024-01-05T20:00:00.000Z"), "January"],
+      [new Date("2024-02-05T20:00:00.000Z"), "February"],
+      [new Date("2024-03-05T20:00:00.000Z"), "March"],
+      [new Date("2024-04-05T20:00:00.000Z"), "April"],
+      [new Date("2024-05-20T08:09:10.000Z"), "May"],
+      [new Date("2024-06-05T20:00:00.000Z"), "June"],
+      [new Date("2024-07-05T20:00:00.000Z"), "July"],
+      [new Date("2024-08-05T20:00:00.000Z"), "August"],
+      [new Date("2024-09-05T20:00:00.000Z"), "September"],
+      [new Date("2024-10-05T20:00:00.000Z"), "October"],
+      [new Date("2024-11-05T20:00:00.000Z"), "November"],
+      [new Date("2024-12-05T20:00:00.000Z"), "December"],]
+    setups.forEach(s => {
+      it(s[0].toISOString(), () => {
+        expect(formatter.format(s[0], "MMMM")).to.equal(s[1]);
+      });
+    })
+  });
+
+  describe("should format month names short", () => {
+    const setups: Setup[] = [
+      [new Date("2024-01-05T20:00:00.000Z"), "Jan"],
+      [new Date("2024-02-05T20:00:00.000Z"), "Feb"],
+      [new Date("2024-03-05T20:00:00.000Z"), "Mar"],
+      [new Date("2024-04-05T20:00:00.000Z"), "Apr"],
+      [new Date("2024-05-20T08:09:10.000Z"), "May"],
+      [new Date("2024-06-05T20:00:00.000Z"), "Jun"],
+      [new Date("2024-07-05T20:00:00.000Z"), "Jul"],
+      [new Date("2024-08-05T20:00:00.000Z"), "Aug"],
+      [new Date("2024-09-05T20:00:00.000Z"), "Sep"],
+      [new Date("2024-10-05T20:00:00.000Z"), "Oct"],
+      [new Date("2024-11-05T20:00:00.000Z"), "Nov"],
+      [new Date("2024-12-05T20:00:00.000Z"), "Dec"]
+    ]
+    setups.forEach(s => {
+      it(s[0].toISOString(), () => {
+        expect(formatter.format(s[0], "MMM")).to.equal(s[1]);
       });
     })
   });
