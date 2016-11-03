@@ -16,7 +16,20 @@ describe("Formatter", () => {
     formatter = new DateFormatter("en-US");
   });
 
-  describe("should format Long date", () => {
+  describe("Invalid Date handling", () => {
+    it("should throw on invalid date", () => {
+      const nonDate = {} as Date;
+      expect(() => formatter.format(nonDate, "MMM")).to.throw("Invalid Date");
+    });
+
+    it("should throw on undefined date", () => {
+      const nonDate = undefined;
+      expect(() => formatter.format(nonDate, "MMM")).to.throw("Date is required.");
+    });
+
+  });
+
+  describe("Long date formatting", () => {
     const setups: Setup[] = [
       [new Date(2024, 0, 15), "January 2024"],
       [new Date(2024, 1, 15), "February 2024"],
@@ -38,7 +51,7 @@ describe("Formatter", () => {
     })
   });
 
-  describe("should format Medium date", () => {
+  describe("Medium date formatting", () => {
     const setups: Setup[] = [
       [new Date(2024, 0, 5, 20, 0, 0), "Friday Jan 5, 2024 8:00 PM"],
       [new Date(2024, 1, 5, 23, 0, 0), "Monday Feb 5, 2024 11:00 PM"],
@@ -60,7 +73,7 @@ describe("Formatter", () => {
     })
   });
 
-  describe("should format month names long", () => {
+  describe("Long month names", () => {
     const setups: Setup[] = [
       [new Date(2024, 0, 15), "January"],
       [new Date(2024, 1, 15), "February"],
@@ -82,7 +95,7 @@ describe("Formatter", () => {
     })
   });
 
-  describe("should format month names short", () => {
+  describe("Short month names", () => {
     const setups: Setup[] = [
       [new Date(2024, 0, 15), "Jan"],
       [new Date(2024, 1, 15), "Feb"],

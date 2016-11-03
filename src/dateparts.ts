@@ -8,6 +8,10 @@ export class DateParts {
     public readonly a: string;
     constructor(date: Date) {
 
+        if (!date.getFullYear || isNaN(date.getFullYear())) {
+            throw new RangeError("Invalid Date");
+        }
+
         this.y = date.getFullYear();
         this.m = date.getMonth();
         this.d = date.getDate();

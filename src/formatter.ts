@@ -42,7 +42,10 @@ export class DateFormatter {
         }
     }
 
-    public format(date: Date, fmt: FormatString): string {
+    public format(date: Date | undefined, fmt: FormatString): string {
+        if (!date) {
+            throw new RangeError("Date is required.");
+        }
         return this.doFormat(new DateParts(date), fmt);
     }
 
