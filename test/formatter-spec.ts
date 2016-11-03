@@ -18,18 +18,18 @@ describe("Formatter", () => {
 
   describe("should format Long date", () => {
     const setups: Setup[] = [
-      [new Date("2024-01-05T00:00:00-05:00"), "January 2024"],
-      [new Date("2024-02-05T00:00:00-05:00"), "February 2024"],
-      [new Date("2024-03-05T00:00:00-05:00"), "March 2024"],
-      [new Date("2024-04-05T00:00:00-05:00"), "April 2024"],
-      [new Date("2024-05-05T00:00:00-05:00"), "May 2024"],
-      [new Date("2024-06-05T00:00:00-05:00"), "June 2024"],
-      [new Date("2024-07-05T00:00:00-05:00"), "July 2024"],
-      [new Date("2024-08-05T00:00:00-05:00"), "August 2024"],
-      [new Date("2024-09-05T00:00:00-05:00"), "September 2024"],
-      [new Date("2024-10-05T00:00:00-05:00"), "October 2024"],
-      [new Date("2024-11-05T00:00:00-05:00"), "November 2024"],
-      [new Date("2024-12-05T00:00:00-05:00"), "December 2024"],
+      [new Date(2024, 0, 15), "January 2024"],
+      [new Date(2024, 1, 15), "February 2024"],
+      [new Date(2024, 2, 15), "March 2024"],
+      [new Date(2024, 3, 15), "April 2024"],
+      [new Date(2024, 4, 15), "May 2024"],
+      [new Date(2024, 5, 15), "June 2024"],
+      [new Date(2024, 6, 15), "July 2024"],
+      [new Date(2024, 7, 15), "August 2024"],
+      [new Date(2024, 8, 15), "September 2024"],
+      [new Date(2024, 9, 15), "October 2024"],
+      [new Date(2024, 10, 15), "November 2024"],
+      [new Date(2024, 11, 15), "December 2024"]
     ];
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
@@ -40,18 +40,19 @@ describe("Formatter", () => {
 
   describe("should format Medium date", () => {
     const setups: Setup[] = [
-      [new Date("2024-01-05T20:00:00-06:00"), "Friday Jan 5, 2024 8:00 PM"],
-      [new Date("2024-02-05T23:00:00-06:00"), "Monday Feb 5, 2024 11:00 PM"],
-      [new Date("2024-03-05T20:00:00-06:00"), "Tuesday Mar 5, 2024 8:00 PM"],
-      [new Date("2024-04-05T20:00:00-05:00"), "Friday Apr 5, 2024 8:00 PM"],
-      [new Date("2024-05-20T08:09:10-05:00"), "Monday May 20, 2024 8:09 AM"],
-      [new Date("2024-06-05T20:00:00-05:00"), "Wednesday Jun 5, 2024 8:00 PM"],
-      [new Date("2024-07-05T00:02:00-05:00"), "Friday Jul 5, 2024 12:02 AM"],
-      [new Date("2024-08-05T20:59:00-05:00"), "Monday Aug 5, 2024 8:59 PM"],
-      [new Date("2024-09-05T20:00:00-05:00"), "Thursday Sep 5, 2024 8:00 PM"],
-      [new Date("2024-10-05T20:00:00-05:00"), "Saturday Oct 5, 2024 8:00 PM"],
-      [new Date("2024-11-05T20:00:00-06:00"), "Tuesday Nov 5, 2024 8:00 PM"],
-      [new Date("2024-12-05T20:00:00-06:00"), "Thursday Dec 5, 2024 8:00 PM"],]
+      [new Date(2024, 0, 5, 20, 0, 0), "Friday Jan 5, 2024 8:00 PM"],
+      [new Date(2024, 1, 5, 23, 0, 0), "Monday Feb 5, 2024 11:00 PM"],
+      [new Date(2024, 2, 5, 20, 0, 0), "Tuesday Mar 5, 2024 8:00 PM"],
+      [new Date(2024, 3, 5, 20, 0, 0), "Friday Apr 5, 2024 8:00 PM"],
+      [new Date(2024, 4, 20, 8, 9, 0), "Monday May 20, 2024 8:09 AM"],
+      [new Date(2024, 5, 5, 20, 0, 0), "Wednesday Jun 5, 2024 8:00 PM"],
+      [new Date(2024, 6, 5, 0, 2, 0), "Friday Jul 5, 2024 12:02 AM"],
+      [new Date(2024, 7, 5, 20, 59, 0), "Monday Aug 5, 2024 8:59 PM"],
+      [new Date(2024, 8, 5, 20, 0, 0), "Thursday Sep 5, 2024 8:00 PM"],
+      [new Date(2024, 9, 5, 20, 0, 0), "Saturday Oct 5, 2024 8:00 PM"],
+      [new Date(2024, 10, 5, 20, 0, 0), "Tuesday Nov 5, 2024 8:00 PM"],
+      [new Date(2024, 11, 5, 20, 0, 0), "Thursday Dec 5, 2024 8:00 PM"]
+    ]
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
         expect(formatter.format(s[0], "EEE MMM d, y h:mm a")).to.equal(s[1]);
@@ -61,18 +62,19 @@ describe("Formatter", () => {
 
   describe("should format month names long", () => {
     const setups: Setup[] = [
-      [new Date("2024-01-05T20:00:00.000Z"), "January"],
-      [new Date("2024-02-05T20:00:00.000Z"), "February"],
-      [new Date("2024-03-05T20:00:00.000Z"), "March"],
-      [new Date("2024-04-05T20:00:00.000Z"), "April"],
-      [new Date("2024-05-20T08:09:10.000Z"), "May"],
-      [new Date("2024-06-05T20:00:00.000Z"), "June"],
-      [new Date("2024-07-05T20:00:00.000Z"), "July"],
-      [new Date("2024-08-05T20:00:00.000Z"), "August"],
-      [new Date("2024-09-05T20:00:00.000Z"), "September"],
-      [new Date("2024-10-05T20:00:00.000Z"), "October"],
-      [new Date("2024-11-05T20:00:00.000Z"), "November"],
-      [new Date("2024-12-05T20:00:00.000Z"), "December"],]
+      [new Date(2024, 0, 15), "January"],
+      [new Date(2024, 1, 15), "February"],
+      [new Date(2024, 2, 15), "March"],
+      [new Date(2024, 3, 15), "April"],
+      [new Date(2024, 4, 15), "May"],
+      [new Date(2024, 5, 15), "June"],
+      [new Date(2024, 6, 15), "July"],
+      [new Date(2024, 7, 15), "August"],
+      [new Date(2024, 8, 15), "September"],
+      [new Date(2024, 9, 15), "October"],
+      [new Date(2024, 10, 15), "November"],
+      [new Date(2024, 11, 15), "December"]
+    ]
     setups.forEach(s => {
       it(s[0].toISOString(), () => {
         expect(formatter.format(s[0], "MMMM")).to.equal(s[1]);
@@ -82,18 +84,18 @@ describe("Formatter", () => {
 
   describe("should format month names short", () => {
     const setups: Setup[] = [
-      [new Date("2024-01-05T20:00:00.000Z"), "Jan"],
-      [new Date("2024-02-05T20:00:00.000Z"), "Feb"],
-      [new Date("2024-03-05T20:00:00.000Z"), "Mar"],
-      [new Date("2024-04-05T20:00:00.000Z"), "Apr"],
-      [new Date("2024-05-20T08:09:10.000Z"), "May"],
-      [new Date("2024-06-05T20:00:00.000Z"), "Jun"],
-      [new Date("2024-07-05T20:00:00.000Z"), "Jul"],
-      [new Date("2024-08-05T20:00:00.000Z"), "Aug"],
-      [new Date("2024-09-05T20:00:00.000Z"), "Sep"],
-      [new Date("2024-10-05T20:00:00.000Z"), "Oct"],
-      [new Date("2024-11-05T20:00:00.000Z"), "Nov"],
-      [new Date("2024-12-05T20:00:00.000Z"), "Dec"]
+      [new Date(2024, 0, 15), "Jan"],
+      [new Date(2024, 1, 15), "Feb"],
+      [new Date(2024, 2, 15), "Mar"],
+      [new Date(2024, 3, 15), "Apr"],
+      [new Date(2024, 4, 15), "May"],
+      [new Date(2024, 5, 15), "Jun"],
+      [new Date(2024, 6, 15), "Jul"],
+      [new Date(2024, 7, 15), "Aug"],
+      [new Date(2024, 8, 15), "Sep"],
+      [new Date(2024, 9, 15), "Oct"],
+      [new Date(2024, 10, 15), "Nov"],
+      [new Date(2024, 11, 15), "Dec"]
     ]
     setups.forEach(s => {
       it(s[0].toISOString(), () => {

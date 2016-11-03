@@ -38,7 +38,7 @@ export class DateFormatter {
 
     constructor(private locale: string = "en-US") {
         if (locale !== "en-US") {
-            throw new Error("Only en-US is supported.");
+            throw new RangeError("Only en-US is supported.");
         }
     }
 
