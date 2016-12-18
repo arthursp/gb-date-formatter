@@ -8,7 +8,8 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "noImplicitUseStrict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "sourceMap": false // needed for debugging only
   },
   "include": [
     "src/**/*"
